@@ -4,7 +4,7 @@ const boardSize = 3;
 
 type SquareValue = 'X' | 'O' | '';
 
-function GameBoard() {
+export default function JogoDaVelha() {
   const [board, setBoard] = useState<Array<Array<SquareValue>>>(() =>
     Array(boardSize)
       .fill(null)
@@ -129,5 +129,3 @@ function GameBoard() {
     </div>
   );
 }
-
-export default GameBoard;
