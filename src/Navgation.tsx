@@ -14,12 +14,30 @@ export default function Nav() {
     <div className="bg-slate-400">
       <Router>
         <Routes>
-          <Route path="/My_code_box/21CardGame" element={<Gaming />} />
-          <Route path="/My_code_box/JogodaVelha" element={<JogoDaVelha />} />
-          <Route path="/My_code_box/Calculadora" element={<Calculator />} />
-          <Route path="/My_code_box/TodoList" element={<TodoList />} />
-          <Route path="/My_code_box/CardGame" element={<CardGame />} />
-          <Route path="/My_code_box/" element={<Home />} />
+          <Route
+            path="https://joaofelipe-rosa.github.io/My_code_box/21CardGame"
+            element={<Gaming />}
+          />
+          <Route
+            path="https://joaofelipe-rosa.github.io/My_code_box/JogodaVelha"
+            element={<JogoDaVelha />}
+          />
+          <Route
+            path="https://joaofelipe-rosa.github.io/My_code_box/Calculadora"
+            element={<Calculator />}
+          />
+          <Route
+            path="https://joaofelipe-rosa.github.io/My_code_box/TodoList"
+            element={<TodoList />}
+          />
+          <Route
+            path="https://joaofelipe-rosa.github.io/My_code_box/CardGame"
+            element={<CardGame />}
+          />
+          <Route
+            path="https://joaofelipe-rosa.github.io/My_code_box/"
+            element={<Home />}
+          />
         </Routes>
       </Router>
       <div>
