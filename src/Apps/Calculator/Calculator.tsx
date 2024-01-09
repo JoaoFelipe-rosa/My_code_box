@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import HomeButton from '../../Components/buttons/homeButton';
 
 export default function Calculator() {
   const [expr, setExpr] = useState('');
@@ -40,22 +41,24 @@ export default function Calculator() {
   ];
 
   return (
-    <div className="flex flex-col h-72 border rounded">
-      <div className="mb-2 text-2xl font-bold">{expr}</div>
+    <div>
+      <div className="flex flex-col h-72 border rounded">
+        <div className="mb-2 text-2xl font-bold">{expr}</div>
 
-      <div className="grid grid-cols-4 gap-5">
-        {buttons.map(b => (
-          <button key={b} onClick={() => handleClick(b)}>
-            {b}
-          </button>
-        ))}
+        <div className="grid grid-cols-4 gap-5">
+          {buttons.map(b => (
+            <button key={b} onClick={() => handleClick(b)}>
+              {b}
+            </button>
+          ))}
 
-        <button onClick={handleBackspace}>&larr;</button>
+          <button onClick={handleBackspace}>&larr;</button>
+        </div>
+
+        <button className="bg-slate-500" onClick={handleCalculate}>
+          =
+        </button>
       </div>
-
-      <button className="bg-slate-500" onClick={handleCalculate}>
-        =
-      </button>
     </div>
   );
 }

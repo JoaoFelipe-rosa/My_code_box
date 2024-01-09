@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import HomeButton from '../../Components/buttons/homeButton';
 
 const boardSize = 3;
 
@@ -96,36 +97,41 @@ export default function JogoDaVelha() {
   }, [restartGame]);
 
   return (
-    <div className="flex flex-col items-center">
-      {winner ? (
-        <div className="mb-4 text-2xl font-bold">
-          {winner === 'Tie' ? 'Empatou!' : `Jogado ${winner} Venceu!`}
-        </div>
-      ) : (
-        <div className="mb-4 text-2xl font-bold">{`É a vez do jogador ${currentPlayer}`}</div>
-      )}
-      <div className="grid grid-cols-3 gap-4">
-        {board.map((row, rowIndex) =>
-          row.map((cell, cellIndex) => (
-            <button
-              key={`${rowIndex}-${cellIndex}`}
-              className="w-16 h-16 flex items-center justify-center border border-gray-400 cursor-pointer select-none"
-              onClick={() => handleCellClick(rowIndex, cellIndex)}
-              disabled={!!cell || !!winner}
-            >
-              {cell}
-            </button>
-          ))
+    <div>
+      <div className="flex flex-col items-center">
+        {winner ? (
+          <div className="mb-4 text-2xl font-bold">
+            {winner === 'Tie' ? 'Empatou!' : `Jogado ${winner} Venceu!`}
+          </div>
+        ) : (
+          <div className="mb-4 text-2xl font-bold">{`É a vez do jogador ${currentPlayer}`}</div>
         )}
+        <div className="grid grid-cols-3 gap-4">
+          {board.map((row, rowIndex) =>
+            row.map((cell, cellIndex) => (
+              <button
+                key={`${rowIndex}-${cellIndex}`}
+                className="w-16 h-16 flex items-center justify-center border border-gray-400 cursor-pointer select-none"
+                onClick={() => handleCellClick(rowIndex, cellIndex)}
+                disabled={!!cell || !!winner}
+              >
+                {cell}
+              </button>
+            ))
+          )}
+        </div>
+        {winner || checkTie() ? (
+          <button
+            className="mt-4 px-4 py-2 bg-blue-500 text-white font-semibold rounded"
+            onClick={() => setRestartGame(true)}
+          >
+            Restart Game
+          </button>
+        ) : null}
       </div>
-      {winner || checkTie() ? (
-        <button
-          className="mt-4 px-4 py-2 bg-blue-500 text-white font-semibold rounded"
-          onClick={() => setRestartGame(true)}
-        >
-          Restart Game
-        </button>
-      ) : null}
+      <div>
+        <HomeButton />
+      </div>
     </div>
   );
 }
