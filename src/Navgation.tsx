@@ -14,12 +14,12 @@ export default function Nav() {
     <div className="bg-slate-400">
       <Router>
         <Routes>
-          <Route path="/21CardGame" element={<Gaming />} />
-          <Route path="/JogodaVelha" element={<JogoDaVelha />} />
-          <Route path="/Calculadora" element={<Calculator />} />
-          <Route path="/TodoList" element={<TodoList />} />
-          <Route path="/CardGame" element={<CardGame />} />
-          <Route path="/" element={<Home />} />
+          <Route path="My_code_box/21CardGame" element={<Gaming />} />
+          <Route path="My_code_box/JogodaVelha" element={<JogoDaVelha />} />
+          <Route path="My_code_box/Calculadora" element={<Calculator />} />
+          <Route path="My_code_box/TodoList" element={<TodoList />} />
+          <Route path="My_code_box/CardGame" element={<CardGame />} />
+          <Route path="My_code_box/" element={<Home />} />
         </Routes>
       </Router>
       <div>
