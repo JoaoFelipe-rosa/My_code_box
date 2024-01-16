@@ -129,9 +129,6 @@ export default function JogoDaVelha() {
           </button>
         ) : null}
       </div>
-      <div>
-        <HomeButton />
-      </div>
     </div>
   );
 }

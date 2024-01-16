@@ -5,10 +5,30 @@ import { Link } from 'react-router-dom';
 import Loader from '../Loader/Loader';
 
 import './stylePage.css';
-import Button from '../../../../../Components/buttons/button';
-import HomeButton from '../../../../../Components/buttons/homeButton';
 
-function StartGame({ nextStep, setGameMode, pile, loading }) {
+interface Card {
+  image: string;
+}
+
+interface Pile {
+  pile1: Card[];
+  pile2: Card[];
+  pile3: Card[];
+}
+
+interface GameProps {
+  nextStep?: string;
+  setGameMode: (mode: string | undefined) => void;
+  pile: Pile;
+  loading: boolean;
+}
+
+interface GameStepProps extends GameProps {
+  onClickPile: (selectedPile: string) => void;
+  nextStep: string;
+}
+
+function StartGame({ nextStep, setGameMode, pile, loading }: GameProps) {
   const cards = useMemo(() => {
     if (pile) {
       return [...pile.pile1, ...pile.pile2, ...pile.pile3];
@@ -52,7 +72,7 @@ function StartGame({ nextStep, setGameMode, pile, loading }) {
   );
 }
 
-function Result({ pile }) {
+function Result({ pile }: { pile: Pile }) {
   const allCards = [...pile.pile1, ...pile.pile2, ...pile.pile3];
 
   const chooseCards = allCards[10];
@@ -60,7 +80,7 @@ function Result({ pile }) {
     <div className="flex flex-col items-center">
       <h1 className="text_main">Is this your card?</h1>
       <img className="p-9" src={chooseCards.image} alt="choosed card" />
-      <Link to="/">
+      <Link to="/21cardgame">
         <button
           className="p-2 w-full rounded transition ease-in-out delay-150 bg-white hover:-translate-y-1 hover:scale-110 hover:bg-slate-200 duration-300"
           type="button"
@@ -71,7 +91,7 @@ function Result({ pile }) {
     </div>
   );
 }
-function GameStep({ onClickPile, setGameMode, pile, nextStep }) {
+function GameStep({ onClickPile, setGameMode, pile, nextStep }: GameStepProps) {
   return (
     <div className="flex flex-col items-center flex-nowrap">
       <h1 className="text_main">Which pile is your card in?</h1>
@@ -136,12 +156,14 @@ function GameStep({ onClickPile, setGameMode, pile, nextStep }) {
   );
 }
 export default function Gaming() {
-  // loading const
-  const [loading, setLoading] = useState(false);
-  // Armazena as as pilhas de 7 cartas retiradas das 21
-  const [pile, setPile] = useState({ pile1: [], pile2: [], pile3: [] });
-  // Armazena em qual step o game está
-  const [gameMode, setGameMode] = useState('STEP0');
+  const [loading, setLoading] = useState<boolean>(false);
+  const [pile, setPile] = useState<Pile>({
+    pile1: [],
+    pile2: [],
+    pile3: []
+  });
+
+  const [gameMode, setGameMode] = useState<string>('STEP0');
 
   useEffect(() => {
     (async () => {
@@ -190,8 +212,8 @@ export default function Gaming() {
     };
 
     setPile(prevState => {
-      const newCards = [];
-      const allCards = [
+      const newCards: Card[] = [];
+      const allCards: Card[] = [
         ...prevState.pile1,
         ...prevState.pile2,
         ...prevState.pile3
@@ -207,7 +229,7 @@ export default function Gaming() {
     });
   }, []);
 
-  const onClickPile = useCallback(selectedPile => {
+  const onClickPile = useCallback((selectedPile: string) => {
     if (selectedPile === 'pile1') {
       setPile(prevState => ({
         pile1: prevState.pile3,
@@ -275,7 +297,7 @@ export default function Gaming() {
           <div className="flex flex-col items-center">
             <h1 className="text_main">ERROR</h1>
             <h3 className="text_main">Please, restart the game</h3>
-            <Link to="/">
+            <Link to="/21cardgame">
               <button
                 type="button"
                 className="p-2 w-1/3 rounded transition ease-in-out delay-150 bg-white hover:-translate-y-1 hover:scale-110 hover:bg-slate-200 duration-300"
