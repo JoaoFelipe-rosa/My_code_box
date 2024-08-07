@@ -97,7 +97,7 @@ export default function JogoDaVelha() {
   }, [restartGame]);
 
   return (
-    <div>
+    <div className="flex flex-col items-center">
       <div className="flex flex-col items-center">
         {winner ? (
           <div className="mb-4 text-2xl font-bold">
@@ -129,6 +129,7 @@ export default function JogoDaVelha() {
           </button>
         ) : null}
       </div>
+      <HomeButton />
     </div>
   );
 }

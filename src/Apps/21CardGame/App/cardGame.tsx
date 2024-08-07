@@ -2,13 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Header from './Components/Header/Header';
+import HomeButton from '../../../Components/buttons/homeButton';
 
 // CSS
 // import '../../../index.css';
 
 export default function CardGame() {
   return (
-    <div className="flex justify-center flex-col w-full h-full">
+    <div className="flex justify-center flex-col w-full h-full items-center">
       <div className="p-5">
         <Header />
       </div>
@@ -24,6 +25,7 @@ export default function CardGame() {
           </Link>
         </div>
       </div>
+      <HomeButton />
     </div>
   );
 }

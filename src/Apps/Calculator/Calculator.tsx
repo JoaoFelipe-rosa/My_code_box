@@ -41,7 +41,7 @@ export default function Calculator() {
   ];
 
   return (
-    <div>
+    <div className="flex flex-col items-center">
       <div className="flex flex-col h-72 border rounded">
         <div className="mb-2 text-2xl font-bold">{expr}</div>
 
@@ -59,6 +59,7 @@ export default function Calculator() {
           =
         </button>
       </div>
+      <HomeButton />
     </div>
   );
 }

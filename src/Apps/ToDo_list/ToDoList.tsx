@@ -41,9 +41,9 @@ const TodoList: React.FC = () => {
   };
 
   return (
-    <div>
-      <div className="max-w-md mx-auto my-8 p-6 bg-gray-100 rounded-md shadow">
-        <h1 className="text-3xl font-bold mb-6 text-center">Todo List</h1>
+    <div className="flex flex-col items-center">
+      <div className="max-w-md mx-auto my-8 p-6 bg-gray-100 rounded-md shadow items-center">
+        <h1 className="text-3xl font-bold mb-6 text-center">dTodo List</h1>
 
         <div className="flex mb-4">
           <input
@@ -96,6 +96,7 @@ const TodoList: React.FC = () => {
           </ul>
         )}
       </div>
+      <HomeButton />
     </div>
   );
 };

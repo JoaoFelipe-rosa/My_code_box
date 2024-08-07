@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "commonjs",
   "scripts": {
-    "start": "vite",
+    "dev": "vite",
     "clean": "chmod +x Scripts/clean.sh && sh Scripts/clean.sh && yarn",
     "build": "tsc && vite build",
     "lint": "eslint . --ext .ts,.tsx,.jsx,.js",
@@ -40,5 +40,9 @@
     "tailwindcss": "^3.3.3",
     "typescript": "^5.1.6",
     "vite": "^4.3.9"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/JoaoFelipe-rosa/My_code_box.git",
+  "author": "JoaoFelipe-rosa <joaofelipedarosa@gmail.com>",
+  "license": "MIT"
 }
