@@ -6,9 +6,9 @@ import JogoDaVelha from './Apps/Tic_Tac_Toe/ticTacToe';
 import Calculator from './Apps/Calculator/Calculator';
 import TodoList from './Apps/ToDo_list/ToDoList';
 import CardGame from './Apps/21CardGame/App/cardGame';
-import { FaHome } from 'react-icons/fa';
 
 import Gaming from './Apps/21CardGame/App/Components/Pages/Gaming';
+import HomePage from './Pages/PageComponents/sideBar/homePage';
 
 export default function Nav() {
   return (
@@ -35,7 +35,10 @@ export default function Nav() {
             path="/Calculadora"
             element={<ApplicationCard PageView={<Calculator />} />}
           />
-          <Route path="/" element={<ApplicationCard PageView={<FaHome />} />} />
+          <Route
+            path="/"
+            element={<ApplicationCard PageView={<HomePage />} />}
+          />
         </Routes>
       </Router>
     </div>
