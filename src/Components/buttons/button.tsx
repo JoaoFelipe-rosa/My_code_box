@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 interface ButtonProps {
   children?: React.ReactNode;
   buttonText?: string;
-  buttonLink?: string;
+  buttonLink: string;
   clickFunction?: () => void;
   type?: string;
   className?: string;

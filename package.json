@@ -13,6 +13,7 @@
   "dependencies": {
     "@craco/craco": "^7.1.0",
     "axios": "^1.6.5",
+    "caniuse-lite": "^1.0.30001651",
     "craco-alias": "^3.0.1",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.27.5",
