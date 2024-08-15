@@ -7,15 +7,20 @@ export default function ChuckNorris() {
 
   const [joke, setJoke] = useState();
 
+  interface jokeType {
+    value: undefined;
+  }
+
   function GenerateJoke() {
     axios
       .get(ApiUrl)
-      .then((response: { data: any }) => {
+      .then((response: { data: jokeType }) => {
         const data = response.data;
         setJoke(data.value);
+        console.log(data);
         console.log(data.value);
       })
-      .catch((err: any) => {
+      .catch((err: string) => {
         err;
       });
   }

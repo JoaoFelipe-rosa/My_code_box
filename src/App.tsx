@@ -1,5 +1,3 @@
-import React from 'react';
-
 import './input.css';
 import Nav from './Navgation';
 

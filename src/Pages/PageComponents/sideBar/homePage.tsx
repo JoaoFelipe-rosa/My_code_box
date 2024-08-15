@@ -1,5 +1,6 @@
 import { FaHome } from 'react-icons/fa';
 import ChuckNorris from '../../../Functions/ChuckNorrisApi';
+import GetCotation from '../../../Functions/Cotation';
 
 export default function HomePage() {
   return (
@@ -7,6 +8,7 @@ export default function HomePage() {
       <FaHome />
       <ChuckNorris />
       <p>Bem vido a minha aplicação</p>
+      <GetCotation />
     </div>
   );
 }
