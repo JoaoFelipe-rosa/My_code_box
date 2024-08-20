@@ -26,7 +26,6 @@ export default function GetCotation() {
       .then((response: { data: CotationType }) => {
         const data = response.data;
         const coin = data.USDBRL;
-        console.log(coin);
 
         setCodeUsd(coin.code);
         setCotationUsd(coin.bid);
@@ -34,8 +33,6 @@ export default function GetCotation() {
       .catch((err: string) => {
         err;
       });
-    console.log(codeUsd);
-    console.log(cotationUsd);
   }
   function getEURCotation() {
     const dolarUrl = 'https://economia.awesomeapi.com.br/last/EUR-BRL';
@@ -45,7 +42,6 @@ export default function GetCotation() {
       .then((response: { data: CotationType }) => {
         const data = response.data;
         const coin = data.EURBRL;
-        console.log(coin);
 
         setCodeEur(coin.code);
         setCotationEur(coin.bid);
@@ -53,8 +49,6 @@ export default function GetCotation() {
       .catch((err: string) => {
         err;
       });
-    console.log(codeEur);
-    console.log(cotationEur);
   }
   function getBTCCotation() {
     const dolarUrl = 'https://economia.awesomeapi.com.br/last/BTC-BRL';
@@ -64,7 +58,6 @@ export default function GetCotation() {
       .then((response: { data: CotationType }) => {
         const data = response.data;
         const coin = data.BTCBRL;
-        console.log(coin);
 
         setCodeBtc(coin.code);
         setCotationBtc(coin.bid);
@@ -72,8 +65,6 @@ export default function GetCotation() {
       .catch((err: string) => {
         err;
       });
-    console.log(codeBtc);
-    console.log(cotationBtc);
   }
   getDolarCotation();
   getEURCotation();
