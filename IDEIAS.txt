@@ -1,0 +1,3 @@
+# estilizar por meio de componentes
+# criar um grador de treinos para academia
+# conversor de moeda (usar api de moedas)

@@ -8,6 +8,7 @@ import CardGame from './Apps/21CardGame/App/cardGame';
 
 import Gaming from './Apps/21CardGame/App/Components/Pages/Gaming';
 import HomePage from './Pages/PageComponents/sideBar/homePage';
+import SignupForm from './Apps/login_form/form';
 
 export default function Nav() {
   return (
@@ -33,6 +34,10 @@ export default function Nav() {
           <Route
             path="/Calculadora"
             element={<ApplicationCard PageView={<Calculator />} />}
+          />
+          <Route
+            path="/SignupForm"
+            element={<ApplicationCard PageView={<SignupForm />} />}
           />
           <Route
             path="/"

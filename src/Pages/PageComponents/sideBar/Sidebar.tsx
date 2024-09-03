@@ -6,8 +6,14 @@ import { GiCardRandom } from 'react-icons/gi';
 import { TbTicTac } from 'react-icons/tb';
 import { FaCalculator } from 'react-icons/fa';
 import { LuListTodo } from 'react-icons/lu';
+import { HiMiniUsers } from 'react-icons/hi2';
 
 const navItems = [
+  {
+    buttonText: 'Sign up Form',
+    buttonLink: '/SignupForm',
+    icon: <HiMiniUsers size={26} />
+  },
   {
     buttonText: '21 Card Game',
     buttonLink: '/21CardGame',
