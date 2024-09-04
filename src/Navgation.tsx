@@ -7,7 +7,7 @@ import TodoList from './Apps/ToDo_list/ToDoList';
 import CardGame from './Apps/21CardGame/App/cardGame';
 
 import Gaming from './Apps/21CardGame/App/Components/Pages/Gaming';
-import HomePage from './Pages/PageComponents/sideBar/homePage';
+import HomePage from './Pages/homePage';
 import SignupForm from './Apps/login_form/form';
 
 export default function Nav() {

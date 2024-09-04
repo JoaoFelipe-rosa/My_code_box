@@ -6,7 +6,7 @@ export default function GetCotation() {
     value: string | undefined;
     USDBRL: string;
     EURBRL: string;
-    BTCBRL: string | any;
+    BTCBRL: string;
   }
 
   const [cotationUsd, setCotationUsd] = useState();

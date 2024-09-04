@@ -1,11 +1,5 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
-
 import Header from './Components/Header/Header';
-import HomeButton from '../../../Components/buttons/homeButton';
-
-// CSS
-// import '../../../index.css';
 
 export default function CardGame() {
   return (
@@ -25,7 +19,6 @@ export default function CardGame() {
           </Link>
         </div>
       </div>
-      <HomeButton />
     </div>
   );
 }

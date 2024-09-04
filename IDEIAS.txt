@@ -1,3 +1,13 @@
 # estilizar por meio de componentes
 # criar um grador de treinos para academia
 # conversor de moeda (usar api de moedas)
+
+
+
+# Utilizadar api para o tempo para mostrar a previzao do tempo
+# Link da api https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m 
+
+{
+  "latitude": -27.766528,
+  "longitude": -48.626667
+}
