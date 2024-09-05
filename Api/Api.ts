@@ -12,6 +12,8 @@ app.use(cors());
 
 app.listen(port)
 
+
+// USER API
 app.post('/user', async (req, res) => {
   await prisma.user.create({
     data: {
@@ -39,3 +41,29 @@ app.delete('/user/:id', async (req, res) => {
 
   res.status(204).json({"menssage": "ok"});
 });
+
+// TRAIN API
+app.post('/exercise', async (req, res) => {
+  await prisma.exercise.create({
+    data: {
+      exerciseName: req.body.exerciseName,
+      repetition: req.body.repetition,
+      exerciseType: req.body.exerciseType
+    }
+  });
+  res.status(201).json({ "menssage": "Exercise registered successfully"});
+})
+
+app.get('/exercise', async (_req, res) => {
+
+  const exercise = await prisma.exercise.findMany()
+
+  res.status(201).json(exercise);
+});
+
+// model Train {
+//   trainId    String @id @default(auto()) @map("_id") @db.ObjectId
+//   trainName  String @unique
+//   repetition Int    @db.Int
+//   trainType  String
+// }

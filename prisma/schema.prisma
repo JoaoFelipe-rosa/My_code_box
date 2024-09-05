@@ -19,3 +19,10 @@ model User {
   name  String
   age   Int    @db.Int
 }
+
+model Exercise {
+  exerciseId   String @id @default(auto()) @map("_id") @db.ObjectId
+  exerciseName String @unique
+  repetition   Int    @db.Int
+  exerciseType String
+}
