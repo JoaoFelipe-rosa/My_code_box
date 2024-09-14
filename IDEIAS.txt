@@ -11,3 +11,7 @@
   "latitude": -27.766528,
   "longitude": -48.626667
 }
+
+
+#Utilizar api do rick and morti 
+#Link da api https://rickandmortyapi.com/api/

@@ -61,6 +61,34 @@ app.get('/exercise', async (_req, res) => {
   res.status(201).json(exercise);
 });
 
+app.get('/user/:id', async (req, res) => {
+  try {
+    // Buscar usuário pelo ID
+    const user = await prisma.user.findUnique({
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    // Verifica se o usuário existe
+    if (!user) {
+      return res.status(404).json({ message: 'Usuário não encontrado.' });
+    }
+
+    // Retorna todas as informações do usuário
+    res.status(200).json({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      age: user.age, // ou outro campo que queira retornar
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erro ao buscar o usuário.' });
+  }
+});
+
+
 // model Train {
 //   trainId    String @id @default(auto()) @map("_id") @db.ObjectId
 //   trainName  String @unique

@@ -12,7 +12,7 @@ export default function SignupForm() {
       .required('Obrigatório'),
     age: Yup.string()
       .min(1, 'Muito Curto!')
-      .max(50, 'Muito Longo!')
+      .max(3, 'Muito Longo!')
       .required('Obrigatório'),
     email: Yup.string().email('E-mail invalido').required('Obrigatório')
   });
