@@ -33,6 +33,11 @@ const navItems = [
     buttonText: 'To Do List',
     buttonLink: '/TodoList',
     icon: <LuListTodo size={26} />
+  },
+  {
+    buttonText: 'Workout Generator',
+    buttonLink: '/workoutGenerator',
+    icon: <LuListTodo size={26} />
   }
 ];
 

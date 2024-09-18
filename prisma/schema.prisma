@@ -27,9 +27,25 @@ model Coment {
   userId String? @db.ObjectId
 }
 
+enum Sex {
+  MALE
+  FEMALE
+  OTHER
+}
+
+enum ExerciseType {
+  CARDIO
+  STRENGTH
+  FLEXIBILITY
+  BALANCE
+}
+
 model Exercise {
-  exerciseId   String @id @default(auto()) @map("_id") @db.ObjectId
-  exerciseName String @unique
-  repetition   Int    @db.Int
-  exerciseType String
+  id               String       @id @default(auto()) @map("_id") @db.ObjectId
+  exerciseName     String       @unique
+  repetition       Int          @db.Int
+  repetitionAmount Int
+  sex              Sex
+  type             ExerciseType
+  img              String?
 }

@@ -42,13 +42,20 @@ app.delete('/user/:id', async (req, res) => {
   res.status(204).json({"menssage": "ok"});
 });
 
+
+
+
+
 // TRAIN API
 app.post('/exercise', async (req, res) => {
   await prisma.exercise.create({
     data: {
       exerciseName: req.body.exerciseName,
       repetition: req.body.repetition,
-      exerciseType: req.body.exerciseType
+      repetitionAmount: req.body.repetitionAmount,
+      sex: req.body.sex,
+      type: req.body.type,
+      img: req.body.img
     }
   });
   res.status(201).json({ "menssage": "Exercise registered successfully"});
@@ -88,10 +95,3 @@ app.get('/user/:id', async (req, res) => {
   }
 });
 
-
-// model Train {
-//   trainId    String @id @default(auto()) @map("_id") @db.ObjectId
-//   trainName  String @unique
-//   repetition Int    @db.Int
-//   trainType  String
-// }
