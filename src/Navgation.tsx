@@ -5,11 +5,11 @@ import JogoDaVelha from './Apps/Tic_Tac_Toe/ticTacToe';
 import Calculator from './Apps/Calculator/Calculator';
 import TodoList from './Apps/ToDo_list/ToDoList';
 import CardGame from './Apps/21CardGame/App/cardGame';
+import WorkoutGenerationPage from './Apps/workoutGenerator/workoutGenerationPage';
 
 import Gaming from './Apps/21CardGame/App/Components/Pages/Gaming';
 import HomePage from './Pages/homePage';
 import SignupForm from './Apps/login_form/form';
-import WorkoutGenerator from './Apps/workoutGenerator/workoutGenerator';
 
 export default function Nav() {
   return (
@@ -46,7 +46,7 @@ export default function Nav() {
           />
           <Route
             path="/workoutGenerator"
-            element={<ApplicationCard PageView={<WorkoutGenerator />} />}
+            element={<ApplicationCard PageView={<WorkoutGenerationPage />} />}
           />
         </Routes>
       </Router>

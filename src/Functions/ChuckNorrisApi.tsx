@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
-import Button from '../Components/buttons/button';
+import Button from '../Components/buttons/LinkButton';
 
 export default function ChuckNorris() {
   const ApiUrl = 'https://api.chucknorris.io/jokes/random';

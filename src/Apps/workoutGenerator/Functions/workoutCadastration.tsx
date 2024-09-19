@@ -1,46 +1,27 @@
 import { Formik, Form, Field } from 'formik';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
 
-export default function WorkoutGenerator() {
+export default function WorkoutCadastration() {
   const apiUrl = 'http://localhost:5000/exercise/';
 
-  const [Workout, setWorkout] = useState([]);
-
-  function getWorkout() {
-    axios
-      .get(apiUrl)
-      .then(response => {
-        const data = response.data;
-        setWorkout(data);
-      })
-      .catch((err: string) => {
-        err;
-      });
-  }
   function sendWorkout(value: object) {
-    axios.post(apiUrl, value).then(function (response) {
-      console.log(response);
-      getWorkout();
-    });
+    axios.post(apiUrl, value);
   }
-
-  async function deleteWorkout(id: unknown) {
-    await axios.delete(`${apiUrl}${id}`);
-    getWorkout();
-  }
-
-  useEffect(() => {
-    getWorkout();
-  }, []);
 
   return (
     <>
       <h1>Cadastro de Treino</h1>
       <Formik
-        initialValues={{}}
+        initialValues={{
+          exerciseName: '',
+          repetition: '',
+          repetitionAmount: '',
+          sex: '',
+          type: ''
+        }}
         onSubmit={values => {
           sendWorkout(values);
+          console.log(values);
         }}
       >
         {() => (
@@ -56,17 +37,19 @@ export default function WorkoutGenerator() {
               type="number"
             />
             <label htmlFor="sex">Sexo</label>
-            <Field component="select" id="sex" name="sex" multiple={false}>
+            <Field as="select" id="sex" name="sex" multiple={false}>
               <option value="MALE">Homen</option>
               <option value="FEMALE">Mulher</option>
               <option value="OTHER">Outro</option>
+              <option value="" label="Selecione" />
             </Field>
             <label htmlFor="Type">Tipo de Treino</label>
-            <Field component="select" id="Type" name="Type" multiple={false}>
+            <Field as="select" id="type" name="type" multiple={false}>
               <option value="CARDIO">Cardio</option>
               <option value="STRENGTH">Força</option>
               <option value="FLEXIBILITY">Flexibilidade</option>
               <option value="BALANCE">Equilíbrio</option>
+              <option value="" label="Selecione" />
             </Field>
             <div className="flex container-login-form-btn justify-center mt-10">
               <button
@@ -79,16 +62,6 @@ export default function WorkoutGenerator() {
           </Form>
         )}
       </Formik>
-
-      <div>
-        {Workout.map(Workouts => (
-          <div key={Workouts.id}>
-            {Workouts.exerciseName}
-            {Workouts.type}
-            <iframe src={Workouts.img}></iframe>
-          </div>
-        ))}
-      </div>
     </>
   );
 }

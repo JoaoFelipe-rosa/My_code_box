@@ -1,23 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-interface ButtonProps {
+interface LinkButtonProps {
   children?: React.ReactNode;
-  buttonText?: string;
-  buttonLink: string;
-  clickFunction?: () => void;
+  buttonText: string;
+  buttonLink?: string;
+  clickFunction: () => void;
   type?: string;
   className?: string;
   buttonIcon?: React.ReactNode;
 }
 
-const Button: React.FC<ButtonProps> = ({
-  buttonText,
+export default function LinkButton({
   buttonLink,
+  clickFunction,
   className,
   buttonIcon,
-  clickFunction
-}) => {
+  buttonText
+}: LinkButtonProps) {
   return (
     <div>
       <Link to={`${buttonLink}`}>
@@ -28,6 +28,4 @@ const Button: React.FC<ButtonProps> = ({
       </Link>
     </div>
   );
-};
-
-export default Button;
+}
