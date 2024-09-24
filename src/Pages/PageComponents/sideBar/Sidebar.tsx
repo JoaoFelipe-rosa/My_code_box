@@ -41,7 +41,7 @@ const navItems = [
 ];
 
 const SideBar: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   function toggleSidebar() {
     setIsOpen(!isOpen);
@@ -49,52 +49,45 @@ const SideBar: React.FC = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 h-full bg-[#29277a] transition-width duration-400 ${
-        isOpen ? 'w-64' : 'w-16'
+      className={`fixed top-0 left-0 h-full bg-[#29277a] ${
+        isOpen ? 'w-64' : 'w-14'
       }`}
     >
-      <div
-        className={`h-full ${
-          isOpen ? 'w-64' : 'w-16'
-        } transition-width duration-400`}
-      >
-        {/* Burger Button */}
-        <LinkButton
-          clickFunction={toggleSidebar}
-          buttonLink=""
-          buttonText=""
-          className={`w-16 h-18 flex items-center justify-center text-[#f9f9f9] transition-opacity duration-300`}
-          buttonIcon={
-            isOpen ? (
-              <GoSidebarCollapse size={26} />
-            ) : (
+      <div className={'flex h-full flex-col '}>
+        <div className="flex mt-4 gap-4 h-12 px-4 py-2 text-[#f9f9f9]">
+          <button onClick={toggleSidebar}>
+            {isOpen ? (
               <GoSidebarExpand size={26} />
-            )
-          }
-        />
-        {/* Sidebar Menu */}
-        <nav className={`mt-4 ${isOpen ? 'block' : 'hidden'}`}>
-          {navItems.map(item => (
-            <LinkButton
-              key={item.buttonText}
-              buttonLink={item.buttonLink}
-              buttonText={item.buttonText}
-              buttonIcon={item.icon}
-              clickFunction={() => {}}
-              className={`flex items-center gap-4 h-14 w-full px-4 py-2 text-[#f9f9f9] text-lg font-medium rounded-md hover:bg-[#0000004d] transition-opacity duration-300 ${
-                isOpen ? 'opacity-100' : 'opacity-80'
-              }`}
-            >
-              <span
-                className={`transition-opacity duration-300 ${
-                  isOpen ? 'opacity-100' : 'opacity-0'
-                }`}
-              >
-                {item.buttonText}
-              </span>
-              {item.icon}
-            </LinkButton>
-          ))}
+            ) : (
+              <GoSidebarCollapse size={26} />
+            )}
+          </button>
+        </div>
+        <nav className="flex my-4 flex-col">
+          {isOpen
+            ? navItems.map(item => (
+                <LinkButton
+                  key={item.buttonText}
+                  buttonLink={item.buttonLink}
+                  buttonText={item.buttonText}
+                  buttonIcon={item.icon}
+                  clickFunction={() => {}}
+                  className="flex gap-4 h-12 px-4 py-2 items-center text-[#f9f9f9] text-lg font-medium rounded-md hover:bg-[#0000004d]"
+                >
+                  {item.buttonText}
+                </LinkButton>
+              ))
+            : navItems.map(item => (
+                <LinkButton
+                  key={item.buttonText}
+                  buttonLink={item.buttonLink}
+                  buttonIcon={item.icon}
+                  clickFunction={() => {}}
+                  className="flex gap-4 h-12 px-4 py-2 items-center text-[#f9f9f9] text-lg font-medium rounded-md hover:bg-[#0000004d]"
+                >
+                  {item.buttonText}
+                </LinkButton>
+              ))}
         </nav>
       </div>
     </nav>
