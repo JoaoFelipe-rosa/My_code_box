@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useMemo, useCallback } from 'react';
+import { useEffect, useState, useMemo, useCallback } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-import Loader from '../Loader/Loader';
+import LineWaveloader from '../../../../../Loaders/LineWaveloader';
 
 import './stylePage.css';
 
@@ -54,13 +54,13 @@ function StartGame({ nextStep, setGameMode, pile, loading }: GameProps) {
             />
           ))
         ) : (
-          <Loader />
+          <LineWaveloader />
         )}
       </div>
       {loading ? (
         <button
           type="button"
-          className="p-2 w-1/3 rounded transition ease-in-out delay-150 bg-white hover:-translate-y-1 hover:scale-110 hover:bg-slate-200 duration-300"
+          className="p-2 w-1/3 rounded transition ease-in-out delay-150 text-black bg-white hover:-translate-y-1 hover:scale-110 hover:bg-slate-200 duration-300"
           onClick={() => setGameMode(nextStep)}
         >
           Start Game
@@ -82,7 +82,7 @@ function Result({ pile }: { pile: Pile }) {
       <img className="p-9" src={chooseCards.image} alt="choosed card" />
       <Link to="/21cardgame">
         <button
-          className="p-2 w-full rounded transition ease-in-out delay-150 bg-white hover:-translate-y-1 hover:scale-110 hover:bg-slate-200 duration-300"
+          className="p-2 w-full rounded transition ease-in-out delay-150 text_main  bg-white hover:-translate-y-1 hover:scale-110 hover:bg-slate-200 duration-300"
           type="button"
         >
           Restart Game
@@ -300,7 +300,7 @@ export default function Gaming() {
             <Link to="/21cardgame">
               <button
                 type="button"
-                className="p-2 w-1/3 rounded transition ease-in-out delay-150 bg-white hover:-translate-y-1 hover:scale-110 hover:bg-slate-200 duration-300"
+                className="p-2 w-1/3 text-black rounded transition ease-in-out delay-150 bg-white hover:-translate-y-1 hover:scale-110 hover:bg-slate-200 duration-300"
               >
                 Restart
               </button>

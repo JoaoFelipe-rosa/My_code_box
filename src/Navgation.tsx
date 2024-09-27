@@ -13,7 +13,7 @@ import SignupForm from './Apps/login_form/form';
 
 export default function Nav() {
   return (
-    <div className="bg-blue-950 w-[100vw] h-[100vh]">
+    <div className="bg-[#386180] w-[100vw] h-[100vh]">
       <Router>
         <Routes>
           <Route

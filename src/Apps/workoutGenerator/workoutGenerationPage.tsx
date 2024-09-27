@@ -7,17 +7,17 @@ export default function WorkoutGenerationPage() {
   const [ResVisibility, setResVisibility] = useState(false);
   return (
     <>
-      <div className="">
+      <div className="flex flex-col justify-center items-center w-full ">
         {ResVisibility ? <WorkoutCadastration /> : <WorkoutCards />}
-        <div></div>
-        <div></div>
-        <div>
-          <SimpleButton
-            clickFunction={() => {
-              setResVisibility(prev => !prev);
-            }}
-            buttonText="Ola"
-          />
+        <div className="flex w-96 items-center ">
+          <div className=" text-center w-full m-10 border rounded bg-[#386180]">
+            <SimpleButton
+              clickFunction={() => {
+                setResVisibility(prev => !prev);
+              }}
+              buttonText="Register Workout"
+            />
+          </div>
         </div>
       </div>
     </>

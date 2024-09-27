@@ -1,7 +1,7 @@
 import React from 'react';
 import { LineWave } from 'react-loader-spinner';
 
-const loader = () => (
+const LineWaveloader = () => (
   <LineWave
     height="250"
     width="250"
@@ -9,11 +9,11 @@ const loader = () => (
     ariaLabel="line-wave"
     wrapperStyle={{}}
     wrapperClass=""
-    visible
+    visible 
     firstLineColor=""
     middleLineColor=""
     lastLineColor=""
   />
 );
 
-export default loader;
+export default LineWaveloader;

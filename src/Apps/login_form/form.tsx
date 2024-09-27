@@ -4,6 +4,13 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FaRegTrashAlt } from 'react-icons/fa';
 
+interface User {
+  id: number;
+  name: string;
+  age: number;
+  email: string;
+}
+
 export default function SignupForm() {
   const Validation = Yup.object().shape({
     name: Yup.string()
@@ -21,7 +28,7 @@ export default function SignupForm() {
 
   const apiUrl = 'http://localhost:5000/user/';
 
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState<User[]>([]);
 
   function getUsers() {
     axios
@@ -52,11 +59,8 @@ export default function SignupForm() {
 
   return (
     <div className="flex flex-row items-center">
-      <div
-        onSubmit={Formik.handleSubmit}
-        className="flex flex-col items-center bg-slate-400 rounded-lg shadow h-96 p-10 mx-10 text-white"
-      >
-        <span className="text-gray-700">
+      <div className="flex flex-col items-center bg-[#386180] rounded-lg shadow h-96 p-10 mx-10 text-white">
+        <span className="text-white">
           <strong> Cadastre seu Usuario</strong>
         </span>
         <Formik
@@ -66,8 +70,9 @@ export default function SignupForm() {
             email: ''
           }}
           validationSchema={Validation}
-          onSubmit={values => {
+          onSubmit={(values, { resetForm }) => {
             sendUser(values);
+            resetForm();
           }}
         >
           {({ errors, touched }) => (
@@ -99,17 +104,9 @@ export default function SignupForm() {
             </Form>
           )}
         </Formik>
-
-        {/* 
-      <div className="flex flex-col items-center">
-      <span className="text-white">Não possui conta? </span>
-        <a className="" href="#">
-          Criar conta
-          </a>
-          </div> */}
       </div>
-      <div className="flex flex-col items-center bg-slate-400 rounded-lg shadow p-10 text-white">
-        <h1 className="text-gray-700">
+      <div className="flex flex-col items-center bg-[#386180] rounded-lg shadow p-10 text-white">
+        <h1 className="text-white">
           <strong>Usuarios cadastrados</strong>
         </h1>
         {users.length > 0 ? (

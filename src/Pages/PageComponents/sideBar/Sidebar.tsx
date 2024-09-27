@@ -3,11 +3,16 @@ import LinkButton from '../../../Components/buttons/LinkButton';
 import { GoSidebarCollapse, GoSidebarExpand } from 'react-icons/go';
 import { GiCardRandom, GiMuscleUp } from 'react-icons/gi';
 import { TbTicTac } from 'react-icons/tb';
-import { FaCalculator } from 'react-icons/fa';
+import { FaCalculator, FaHome } from 'react-icons/fa';
 import { LuListTodo } from 'react-icons/lu';
 import { HiMiniUsers } from 'react-icons/hi2';
 
 const navItems = [
+  {
+    buttonText: 'Home',
+    buttonLink: '/',
+    icon: <FaHome size={26} />
+  },
   {
     buttonText: 'Sign up Form',
     buttonLink: '/SignupForm',
@@ -48,14 +53,10 @@ const SideBar: React.FC = () => {
   }
 
   return (
-    <nav
-      className={`fixed top-0 left-0 h-full bg-[#29277a] ${
-        isOpen ? 'w-64' : 'w-14'
-      }`}
-    >
-      <div className={'flex h-full flex-col '}>
+    <nav className={`fixed h-full bg-[#40382C] ${isOpen ? 'w-64' : 'w-15 '}`}>
+      <div className={'flex h-full flex-col'}>
         <div className="flex mt-4 gap-4 h-12 px-4 py-2 text-[#f9f9f9]">
-          <button onClick={toggleSidebar}>
+          <button onClick={toggleSidebar} className="p-10hover:bg-[#0000004d]">
             {isOpen ? (
               <GoSidebarExpand size={26} />
             ) : (
@@ -63,7 +64,7 @@ const SideBar: React.FC = () => {
             )}
           </button>
         </div>
-        <nav className="flex my-4 flex-col">
+        <nav className="flex my-5  flex-col">
           {isOpen
             ? navItems.map(item => (
                 <LinkButton
@@ -71,8 +72,7 @@ const SideBar: React.FC = () => {
                   buttonLink={item.buttonLink}
                   buttonText={item.buttonText}
                   buttonIcon={item.icon}
-                  clickFunction={() => {}}
-                  className="flex gap-4 h-12 px-4 py-2 items-center text-[#f9f9f9] text-lg font-medium rounded-md hover:bg-[#0000004d]"
+                  className="flex gap-4 h-12 px-4 py-2 items-center text-[#f9f9f9] text-lg font-medium hover:bg-[#0000004d]"
                 >
                   {item.buttonText}
                 </LinkButton>
@@ -82,8 +82,7 @@ const SideBar: React.FC = () => {
                   key={item.buttonText}
                   buttonLink={item.buttonLink}
                   buttonIcon={item.icon}
-                  clickFunction={() => {}}
-                  className="flex gap-4 h-12 px-4 py-2 items-center text-[#f9f9f9] text-lg font-medium rounded-md hover:bg-[#0000004d]"
+                  className="flex gap-4 h-12 px-4 py-2 items-center text-[#f9f9f9] text-lg font-medium hover:bg-[#0000004d]"
                 >
                   {item.buttonText}
                 </LinkButton>

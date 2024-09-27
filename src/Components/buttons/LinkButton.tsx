@@ -5,7 +5,7 @@ interface LinkButtonProps {
   children?: React.ReactNode;
   buttonText?: string;
   buttonLink?: string;
-  clickFunction: () => void;
+  clickFunction?: () => void;
   type?: string;
   className?: string;
   buttonIcon?: React.ReactNode;
