@@ -24,12 +24,32 @@ interface WorkoutItem {
   repetitionAmount: number;
   sex: Sex;
 }
+interface DaysOfWeek {
+  Segunda: WorkoutItem[];
+  Terça: WorkoutItem[];
+  Quarta: WorkoutItem[];
+  Quinta: WorkoutItem[];
+}
 
 export default function WorkoutCards() {
   const apiUrl = 'http://localhost:5000/exercise/';
   const [loading, setLoading] = useLoading(false);
-
   const [Workout, setWorkout] = useState<WorkoutItem[]>([]);
+  const [selectedDay, setSelectedDay] = useState<string>('Segunda');
+  const [daysOfWeek, setDaysOfWeek] = useState<DaysOfWeek>({
+    Segunda: [],
+    Terça: [],
+    Quarta: [],
+    Quinta: []
+  });
+  const filteredWorkout = daysOfWeek[selectedDay as keyof DaysOfWeek] || [];
+
+  function filtrarPorTipo(
+    exercicios: WorkoutItem[],
+    tipoDesejado: ExerciseType
+  ): WorkoutItem[] {
+    return exercicios.filter(exercicio => exercicio.type === tipoDesejado);
+  }
 
   function getWorkout() {
     setLoading(true);
@@ -37,7 +57,14 @@ export default function WorkoutCards() {
       .get(apiUrl)
       .then(response => {
         const data = response.data;
+        console.log(data);
         setWorkout(data);
+        setDaysOfWeek({
+          Segunda: filtrarPorTipo(Workout, ExerciseType.STRENGTH),
+          Terça: filtrarPorTipo(Workout, ExerciseType.CARDIO),
+          Quarta: filtrarPorTipo(Workout, ExerciseType.FLEXIBILITY),
+          Quinta: filtrarPorTipo(Workout, ExerciseType.BALANCE)
+        });
       })
       .catch((err: string) => {
         err;
@@ -46,56 +73,115 @@ export default function WorkoutCards() {
       setLoading(false);
     }, 2000);
   }
-  async function deleteWorkout(id: number) {
-    setLoading(true);
-    await axios.delete(`${apiUrl}${id}`);
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }
+  // async function deleteWorkout(id: number) {
+  //   setLoading(true);
+  //   await axios.delete(`${apiUrl}${id}`);
+  //   getWorkout();
+  //   // setTimeout(() => {
+  //   setLoading(false);
+  //   // }, 2000);
+  // }
 
   useEffect(() => {
     getWorkout();
   }, []);
 
+  console.log(daysOfWeek);
   return (
     <>
-      <div className="flex flex-row items-center justify-center">
+      <div className="flex flex-col items-center justify-between">
+        <select
+          value={selectedDay}
+          onChange={e => {
+            setSelectedDay(e.target.value);
+          }}
+          className="p-2 border rounded mb-4 text-black"
+        >
+          <option value="Segunda">Segunda</option>
+          <option value="Terça">Terça</option>
+          <option value="Quarta">Quarta</option>
+          <option value="Quinta">Quinta</option>
+        </select>
         {loading ? (
           <Ringsloader />
         ) : (
           <>
-            {Workout.map(exercise => (
+            {filteredWorkout.map(exercise => (
               <div
-                className="flex flex-col w-[20rem] border rounded bg-[#386180] m-2 items-center"
+                className="flex flex-row h-full gap-3 border rounded bg-[#386180] m-2 items-center "
                 key={exercise.id}
               >
-                {exercise.img == null ? (
-                  <h1> imagem nao cadastrada</h1>
-                ) : (
-                  <iframe
-                    className="p-0 border rounded m-3"
-                    src={exercise.img}
-                    title={exercise.exerciseName}
-                  ></iframe>
-                )}
-                <div>{exercise.exerciseName}</div>
-                <div>{exercise.repetition}</div>
-                <div>{exercise.repetitionAmount}</div>
-                <div>{exercise.type}</div>
-                <div>{exercise.sex}</div>
+                <div className="text-center px-10">
+                  <h1>{selectedDay}</h1>
+                </div>
+                <div className="flex flex-col px-5 border-x-2 h-32 justify-around w-full">
+                  <div>Exercicio: {exercise.exerciseName}</div>
+                  <div>
+                    repetiçoes: {exercise.repetition} X{' '}
+                    {exercise.repetitionAmount}
+                  </div>
+                  <div>Tipo de Exercio: {exercise.type}</div>
+                </div>
                 <div>
-                  <button
-                    onClick={() => {
-                      deleteWorkout(exercise.id);
-                    }}
-                  >
-                    Excluir
-                  </button>
+                  {exercise.img == null ? (
+                    <h1 className="p-4"> Exemplo nao cadastrada</h1>
+                  ) : (
+                    <div>
+                      <iframe
+                        src={exercise.img}
+                        title={exercise.exerciseName}
+                        width="150"
+                      ></iframe>
+                      <img src={exercise.img} alt="" />
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
           </>
+          // <>
+          //   {Workout.map(exercise => (
+          //     <div
+          //       className="flex flex-rol h-full gap-3 border rounded bg-[#386180] m-2 items-center"
+          //       key={exercise.id}
+          //     >
+          //       <div className="text-center px-10">
+          //         <h1> dia da semana aqui</h1>
+          //       </div>
+          //       <div className="flex flex-col px-10 border-x-2 h-40 justify-around w-full">
+          //         <div>Exercicio: {exercise.exerciseName}</div>
+          //         <div>
+          //           repetiçoes: {exercise.repetition} X{' '}
+          //           {exercise.repetitionAmount}
+          //         </div>
+          //         <div>Tipo de Exercio: {exercise.type}</div>
+          //       </div>
+          //       <div>
+          //         {exercise.img == null ? (
+          //           <h1 className="p-4"> Exemplo nao cadastrada</h1>
+          //         ) : (
+          //           <div>
+          //             <iframe
+          //               src={exercise.img}
+          //               title={exercise.exerciseName}
+          //               width="200"
+          //             ></iframe>
+          //             <img src={exercise.img} alt="" />
+          //           </div>
+          //         )}
+          //       </div>
+          //       {/* <div>
+          //         <button
+          //           onClick={() => {
+          //             deleteWorkout(exercise.id);
+          //           }}
+          //         >
+          //           Excluir
+          //         </button>
+          //       </div> */}
+          //     </div>
+          //   ))}
+          // </>
         )}
       </div>
     </>
