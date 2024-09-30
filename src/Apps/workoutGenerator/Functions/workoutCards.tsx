@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useLoading } from '../../../hooks/IsLoading';
 import Ringsloader from '../../../Loaders/Ringsloader';
+import { TbH1 } from 'react-icons/tb';
 
 enum Sex {
   MALE = 'MALE',
@@ -73,6 +74,7 @@ export default function WorkoutCards() {
       setLoading(false);
     }, 2000);
   }
+
   // async function deleteWorkout(id: number) {
   //   setLoading(true);
   //   await axios.delete(`${apiUrl}${id}`);
@@ -84,7 +86,7 @@ export default function WorkoutCards() {
 
   useEffect(() => {
     getWorkout();
-  }, []);
+  }, [selectedDay]);
 
   console.log(daysOfWeek);
   return (
@@ -106,82 +108,43 @@ export default function WorkoutCards() {
           <Ringsloader />
         ) : (
           <>
-            {filteredWorkout.map(exercise => (
-              <div
-                className="flex flex-row h-full gap-3 border rounded bg-[#386180] m-2 items-center "
-                key={exercise.id}
-              >
-                <div className="text-center px-10">
-                  <h1>{selectedDay}</h1>
-                </div>
-                <div className="flex flex-col px-5 border-x-2 h-32 justify-around w-full">
-                  <div>Exercicio: {exercise.exerciseName}</div>
-                  <div>
-                    repetiçoes: {exercise.repetition} X{' '}
-                    {exercise.repetitionAmount}
+            {!filteredWorkout || filteredWorkout.length === 0 ? (
+              <h1>sem treino</h1>
+            ) : (
+              filteredWorkout.map(exercise => (
+                <div
+                  className="flex flex-row h-32 gap-3 border rounded bg-[#386180] m-2 items-center "
+                  key={exercise.id}
+                >
+                  <div className="text-center px-10">
+                    <h1>{selectedDay}</h1>
                   </div>
-                  <div>Tipo de Exercio: {exercise.type}</div>
-                </div>
-                <div>
-                  {exercise.img == null ? (
-                    <h1 className="p-4"> Exemplo nao cadastrada</h1>
-                  ) : (
+                  <div className="flex flex-col px-5 border-x-2 h-32 justify-around w-full">
+                    <div>Exercicio: {exercise.exerciseName}</div>
                     <div>
-                      <iframe
-                        src={exercise.img}
-                        title={exercise.exerciseName}
-                        width="150"
-                      ></iframe>
-                      <img src={exercise.img} alt="" />
+                      repetiçoes: {exercise.repetition} X{' '}
+                      {exercise.repetitionAmount}
                     </div>
-                  )}
+                    <div>Tipo de Exercio: {exercise.type}</div>
+                  </div>
+                  <div>
+                    {exercise.img == null ? (
+                      <h1 className="p-4"> Exemplo nao cadastrada</h1>
+                    ) : (
+                      <div>
+                        <iframe
+                          src={exercise.img}
+                          title={exercise.exerciseName}
+                          width="150"
+                        ></iframe>
+                        <img src={exercise.img} alt="" />
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))
+            )}
           </>
-          // <>
-          //   {Workout.map(exercise => (
-          //     <div
-          //       className="flex flex-rol h-full gap-3 border rounded bg-[#386180] m-2 items-center"
-          //       key={exercise.id}
-          //     >
-          //       <div className="text-center px-10">
-          //         <h1> dia da semana aqui</h1>
-          //       </div>
-          //       <div className="flex flex-col px-10 border-x-2 h-40 justify-around w-full">
-          //         <div>Exercicio: {exercise.exerciseName}</div>
-          //         <div>
-          //           repetiçoes: {exercise.repetition} X{' '}
-          //           {exercise.repetitionAmount}
-          //         </div>
-          //         <div>Tipo de Exercio: {exercise.type}</div>
-          //       </div>
-          //       <div>
-          //         {exercise.img == null ? (
-          //           <h1 className="p-4"> Exemplo nao cadastrada</h1>
-          //         ) : (
-          //           <div>
-          //             <iframe
-          //               src={exercise.img}
-          //               title={exercise.exerciseName}
-          //               width="200"
-          //             ></iframe>
-          //             <img src={exercise.img} alt="" />
-          //           </div>
-          //         )}
-          //       </div>
-          //       {/* <div>
-          //         <button
-          //           onClick={() => {
-          //             deleteWorkout(exercise.id);
-          //           }}
-          //         >
-          //           Excluir
-          //         </button>
-          //       </div> */}
-          //     </div>
-          //   ))}
-          // </>
         )}
       </div>
     </>
