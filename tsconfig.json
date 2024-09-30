@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2017",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -22,6 +22,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "Api"],
+  "include": ["src", "Api", "PROJETO_PESSOAIS/Google"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

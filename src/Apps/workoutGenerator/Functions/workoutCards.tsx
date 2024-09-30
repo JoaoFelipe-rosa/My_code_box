@@ -2,7 +2,6 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useLoading } from '../../../hooks/IsLoading';
 import Ringsloader from '../../../Loaders/Ringsloader';
-import { TbH1 } from 'react-icons/tb';
 
 enum Sex {
   MALE = 'MALE',

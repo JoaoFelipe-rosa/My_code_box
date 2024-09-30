@@ -15,7 +15,7 @@ export default function WorkoutGenerationPage() {
               clickFunction={() => {
                 setResVisibility(prev => !prev);
               }}
-              buttonText="Register Workout"
+              buttonText="Screen Swap"
             />
           </div>
         </div>

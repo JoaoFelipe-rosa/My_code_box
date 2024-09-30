@@ -12,7 +12,7 @@ node_modules
 dist
 dist-ssr
 *.local
-
+PROJETO_PESSOAIS
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
