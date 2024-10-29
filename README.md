@@ -1,6 +1,6 @@
 # MY CODE BOX
 
-## TECS
+## TECHS
 
 * PRISMA
 * TYPESCRIP
